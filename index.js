@@ -7,7 +7,7 @@ inquirer
     {
         type: 'list',
         message: '',
-        name: 'license',
+        name: 'choices',
         choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role'],
     },
     {
@@ -52,5 +52,8 @@ inquirer
         name: 'Update an employee role',
     },
   ]).then((answers) => {
-  
+  //work with answers.choice
+  //call function to get employees
 });
+
+//look into switch statement

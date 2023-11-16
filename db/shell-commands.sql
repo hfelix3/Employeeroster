@@ -1,0 +1,5 @@
+-- ? DO I NEED ONE OF THESE FOR EVERY TABLE? ALSO THE SELECT DATA BASE?
+SELECT * FROM department;
+
+-- Check if Database in Use ---
+SELECT DATABASE();
