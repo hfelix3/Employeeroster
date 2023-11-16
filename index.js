@@ -6,10 +6,12 @@ inquirer
       //TODO: create the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
     {
         type: 'list',
-        message: '',
-        name: 'choices',
+        message: 'WHAT WOULD YOU LIKE TO DO?',
+        name: 'SELECTED',
         choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role'],
     },
+    // TODO:IF STATEMENTS
+    // TODO:CREATE FUNCTION FOR CHOICES THEN SQL QUERY TO GET DEPARTMENTS
     {
         type: 'input',
         message: 'Enter the name of the department',
@@ -52,8 +54,6 @@ inquirer
         name: 'Update an employee role',
     },
   ]).then((answers) => {
-  //work with answers.choice
-  //call function to get employees
-});
+    // TODO: Write query. work with "answers.choice", call function to get employees, look into switch statement
 
-//look into switch statement
+});
