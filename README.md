@@ -1,9 +1,9 @@
 # Employeeroster
-# Title: svg-logo-generator
+# Title: Employeeroster
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 # Description
-This application creates a roster in the terminal where an employer can track the employees information.
+This application creates a roster table in the terminal where an employer can organize their business database, manage departments, roles and track employees .
 
 # Table of contents
 - Title 
@@ -20,7 +20,7 @@ This application creates a roster in the terminal where an employer can track th
 n/a
 
 # Usage
-This application contains employee information in tables
+This application contains is meant to save business data in tables helping to track departments, roles, employees, and salaries.
 
 # License 
 
@@ -30,9 +30,9 @@ Covered under MIT license.
 No contributions at the moment.
 
 # Tests
-Challenge graders will be demonstrated testing in video format.
+Challenge assignment testing will be demonstrated in video format.
 
 # Links
 
-Github Repository:
+Github Repository: https://github.com/hfelix3/Employeeroster/tree/main
 Google Drive link: 

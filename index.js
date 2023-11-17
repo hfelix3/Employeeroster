@@ -54,6 +54,6 @@ inquirer
         name: 'Update an employee role',
     },
   ]).then((answers) => {
-    // TODO: Write query. work with "answers.choice", call function to get employees, look into switch statement
+    // TODO: work with "answers.choice", call function to get employees, look into switch statement
 
 });
