@@ -8,6 +8,7 @@ inquirer
         type: 'list',
         message: 'WHAT WOULD YOU LIKE TO DO?',
         name: 'SELECTED',
+        // todo: need array of choices with name and value
         choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role'],
     },
     // TODO:IF STATEMENTS
@@ -54,6 +55,6 @@ inquirer
         name: 'Update an employee role',
     },
   ]).then((answers) => {
-    // TODO: work with "answers.choice", call function to get employees, look into switch statement
+    // TODO: work with "answers.choice", call function to get employees, look into switch statement to review statements. 
 
 });
