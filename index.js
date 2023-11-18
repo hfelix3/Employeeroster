@@ -16,7 +16,6 @@ inquirer
         type: 'list',
         message: 'WHAT WOULD YOU LIKE TO DO?',
         name: 'SELECTED',
-        // todo: need array of choices with name and value
         choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role'],
     },
     // {
@@ -61,9 +60,9 @@ inquirer
     //     name: 'Update an employee role',
     // },
   ]).then((answers) => {
-    // TODO:IF STATEMENTS
-    // TODO:CREATE FUNCTION FOR CHOICES THEN SQL QUERY TO GET DEPARTMENTS
-    // TODO: work with "answers.choice", call function to get employees, look into switch statement to review statements. 
+    // TODO: Create if statements
+    // TODO: Create a function for the choices then an SQL query to get the departments
+    // TODO: Work with "answers.choice", call function to get employees, look into switch statement to review statements. 
   console.log (answers.SELECTED) 
   if (answers.SELECTED == 'View all departments') {
     getAllDepartments()
