@@ -66,12 +66,42 @@ inquirer
   console.log (answers.SELECTED) 
   if (answers.SELECTED == 'View all departments') {
     getAllDepartments()
+  } else if (answers.SELECTED == 'View all roles') {
+    getAllRoles()
+  } else if (answers.SELECTED == 'View all Employees') {
+    getAllEmployees()
   }
 });
 
 function getAllDepartments() {
-  console.log ('Hello')
+  console.log ('Hello departments')
   const sql = `SELECT * FROM department`;
+
+  db.query(sql, (err, rows) => {
+    if (err) {
+      console.error(err)
+      return;
+    }
+    console.table(rows)
+  })
+};
+
+function getAllRoles() {
+  console.log ('Hello roles')
+  const sql = `SELECT * FROM roles`;
+
+  db.query(sql, (err, rows) => {
+    if (err) {
+      console.error(err)
+      return;
+    }
+    console.table(rows)
+  })
+};
+
+function getAllEmployees() {
+  console.log ('Hello employees')
+  const sql = `SELECT * FROM employees`;
 
   db.query(sql, (err, rows) => {
     if (err) {
