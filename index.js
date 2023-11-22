@@ -37,6 +37,14 @@ inquirer
     getAllRoles()
   } else if (answers.SELECTED == 'View all employees') {
     getAllEmployees()
+  } else if (answers.SELECTED == 'Add a department') {
+    addDepartment();
+  } else if (answers.SELECTED == 'Add a role') {
+    addRole();
+  } else if (answers.SELECTED == 'Add an employee') {
+    addEmployee();
+  } else if (answers.SELECTED == 'Update an employee role') {
+    updateEmployeeRole();
   }
 });
 
@@ -79,7 +87,38 @@ function getAllEmployees() {
   })
 };
 
+function addDepartment(){
+  console.log('started addDepartment function')
+  inquirer
+.prompt([
+  {
+    type: 'input',
+    message: 'Enter the name of the department',
+    name: 'Add a department',
+  },
+]).then((answers) => {
+console.log(answers);
+console.log('department added');
+});
+};
 
+function addRole(){
+  console.log('started addRole function')
+  inquirer
+  .prompt([
+    {
+      type: 'input',
+      message: 'Enter the name, salary, and department for the role',
+      name: 'Add a role',
+    },
+  ]).then((answers) => {
+    console.log(answers);
+    console.log('role added')
+  });
+};
+
+function addEmployee(){
+  console.log('started addEmployee function')
 inquirer
 .prompt([
   {
@@ -103,78 +142,28 @@ inquirer
     name: 'manager',
   },
 ]).then((answers) => {
-
-  
-  function addEmployee(){
-    console.log('employee added')
-    Connection.query('INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)'),
-    db.query(sql, answers, (err, rows) => {
-      if (err) {
-        console.error(err)
-        return;
-      }
-      console.table(rows)
-    })
-  };
-
+  console.log(answers);
+  console.log('employee added')
 });
-  
+};
+
+function updateEmployeeRole(){
+  console.log('started updateEmployeeRole function')
   inquirer
-.prompt([
-  {
-    type: 'input',
-    message: 'Enter the name of the department',
-    name: 'Add a department',
-  },
-  {
-    type: 'input',
-    message: 'Enter the name, salary, and department for the role',
-    name: 'Add a role',
-  },
-  {
-    type: 'list',
-    message: 'Select an employee to update',
-    name: 'Update an employee role',
-    choices: ['employee 1', 'employee 2'],
-  },
-  {
-    type: 'input',
-    message: 'Update employee new role',
-    name: 'Update an employee role',
-  },
-]).then((answers) => {
-  console.log (answers.ENTERED) 
-  if (answers.ENTERED == 'Add a department') {
-    addDepartment()
-  } else if (answers.ENTERED == 'Add a role') {
-    addRole()
-  } else if (answers.ENTERED == 'Add an employee') {
-    addEmployee()
-  }
-  function addDepartment(){
-    console.log('department added')
-    Connection.query('INSERT INTO Add a department'),
-  
-    db.query(sql, (err, rows) => {
-      if (err) {
-        console.error(err)
-        return;
-      }
-      console.table(rows)
-    })
-  };
-  
-  function addRole(){
-    console.log('role added')
-    Connection.query('INSERT INTO Add a role'),
-  
-    db.query(sql, (err, rows) => {
-      if (err) {
-        console.error(err)
-        return;
-      }
-      console.table(rows)
-    })
-  };
-
-});
+  .prompt([
+    {
+      type: 'list',
+      message: 'Select an employee to update',
+      name: 'Update an employee role',
+      choices: ['employee 1', 'employee 2'],
+    },
+    {
+      type: 'input',
+      message: 'Update employee new role',
+      name: 'Update an employee role',
+    },
+  ]).then((answers) => {
+    console.log(answers);
+    console.log('employee role updated')
+  });
+};
