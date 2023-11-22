@@ -94,7 +94,7 @@ function addDepartment() {
   {
     type: 'input',
     message: 'Enter the name of the department',
-    name: 'Add a department',
+    name: 'name',
   },
 ]).then((answers) => {
 console.log(answers);
@@ -121,17 +121,17 @@ function addRole() {
     {
       type: 'input',
       message: 'Enter the name for the role',
-      name: 'Add a role',
+      name: 'title',
     },
     {
       type: 'input',
       message: 'Enter the salary for the role',
-      name: 'Add a role',
+      name: 'salary',
     },
     {
       type: 'input',
       message: 'Enter the department for the role',
-      name: 'Add a role',
+      name: 'department_id',
     },
   ]).then((answers) => {
     console.log(answers);
@@ -196,18 +196,26 @@ inquirer
 
 function updateEmployeeRole() {
   console.log('started updateEmployeeRole function')
+
+  db.query('SELECT first_name, last_name FROM employees', (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const employeeNames = results.map((employee) => `${employee.first_name} ${employee.last_name}`);
+
+
   inquirer
   .prompt([
     {
       type: 'list',
       message: 'Select an employee to update',
       name: 'Update an employee role',
-      choices: ['employee 1', 'employee 2'],
+      choices: employeeNames,
     },
     {
       type: 'input',
       message: 'Update employee new role',
-      name: 'Update an employee role',
+      name: 'role_id',
     },
   ]).then((answers) => {
     console.log(answers);
@@ -224,5 +232,8 @@ function updateEmployeeRole() {
       }
     );
 
+  });
+  }
+    
   });
 };
