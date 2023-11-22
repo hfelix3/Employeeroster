@@ -87,7 +87,7 @@ function getAllEmployees() {
   })
 };
 
-function addDepartment(){
+function addDepartment() {
   console.log('started addDepartment function')
   inquirer
 .prompt([
@@ -102,7 +102,7 @@ console.log('department added');
 });
 };
 
-function addRole(){
+function addRole() {
   console.log('started addRole function')
   inquirer
   .prompt([
@@ -127,7 +127,7 @@ function addRole(){
   });
 };
 
-function addEmployee(){
+function addEmployee() {
   console.log('started addEmployee function')
 inquirer
 .prompt([
@@ -153,11 +153,22 @@ inquirer
   },
 ]).then((answers) => {
   console.log(answers);
-  console.log('employee added')
+
+  connection.query(
+    'INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)',
+    [answers.firstName, answers.lastName, answers.role, answers.manager],
+    (err, results) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log('Employee added');
+      }
+    }
+  );
 });
 };
 
-function updateEmployeeRole(){
+function updateEmployeeRole() {
   console.log('started updateEmployeeRole function')
   inquirer
   .prompt([
