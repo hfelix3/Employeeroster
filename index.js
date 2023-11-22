@@ -16,49 +16,16 @@ inquirer
         type: 'list',
         message: 'WHAT WOULD YOU LIKE TO DO?',
         name: 'SELECTED',
-        choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update an employee role'],
+        choices: [
+          'View all departments', 
+          'View all roles', 
+          'View all employees', 
+          'Add a department', 
+          'Add a role', 
+          'Add an employee', 
+          'Update an employee role'
+        ],
     },
-    // {
-    //     type: 'input',
-    //     message: 'Enter the name of the department',
-    //     name: 'Add a department',
-    // },
-    // {
-    //     type: 'input',
-    //     message: 'Enter the name, salary, and department for the role',
-    //     name: 'Add a role',
-    // },
-    // {
-    //     type: 'input',
-    //     message: 'Enter the employee’s first name',
-    //     name: 'Add an employee',
-    // },
-    // {
-    //   type: 'input',
-    //   message: 'Enter the employee’s last name',
-    //   name: 'Add an employee',
-    // },
-    // {
-    //   type: 'input',
-    //   message: 'Enter the employee’s role',
-    //   name: 'Add an employee',
-    // },
-    // {
-    //   type: 'input',
-    //   message: 'Enter the employee’s manager',
-    //   name: 'Add an employee',
-    // },
-    // {
-    //     type: 'list',
-    //     message: 'Select an employee to update',
-    //     name: 'Update an employee role',
-    //     choices: ['employee 1', 'employee 2'],
-    // },
-    // {
-    //     type: 'input',
-    //     message: 'Update employee new role',
-    //     name: 'Update an employee role',
-    // },
   ]).then((answers) => {
     // TODO: Create if statements
     // TODO: Create a function for the choices then an SQL query to get the departments
@@ -68,13 +35,13 @@ inquirer
     getAllDepartments()
   } else if (answers.SELECTED == 'View all roles') {
     getAllRoles()
-  } else if (answers.SELECTED == 'View all Employees') {
+  } else if (answers.SELECTED == 'View all employees') {
     getAllEmployees()
   }
 });
 
 function getAllDepartments() {
-  console.log ('Hello departments')
+  console.log ('departments loaded')
   const sql = `SELECT * FROM department`;
 
   db.query(sql, (err, rows) => {
@@ -87,7 +54,7 @@ function getAllDepartments() {
 };
 
 function getAllRoles() {
-  console.log ('Hello roles')
+  console.log ('roles loaded')
   const sql = `SELECT * FROM roles`;
 
   db.query(sql, (err, rows) => {
@@ -100,7 +67,7 @@ function getAllRoles() {
 };
 
 function getAllEmployees() {
-  console.log ('Hello employees')
+  console.log ('employees loaded')
   const sql = `SELECT * FROM employees`;
 
   db.query(sql, (err, rows) => {
@@ -111,3 +78,103 @@ function getAllEmployees() {
     console.table(rows)
   })
 };
+
+
+inquirer
+.prompt([
+  {
+    type: 'input',
+    message: "Enter the employee's first name",
+    name: 'firstName',
+  },
+  {
+    type: 'input',
+    message: "Enter the employee's last name",
+    name: 'lastName',
+  },
+  {
+    type: 'input',
+    message: "Enter the employee's role",
+    name: 'role',
+  },
+  {
+    type: 'input',
+    message: "Enter the employee's manager",
+    name: 'manager',
+  },
+]).then((answers) => {
+
+  
+  function addEmployee(){
+    console.log('employee added')
+    Connection.query('INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)'),
+    db.query(sql, answers, (err, rows) => {
+      if (err) {
+        console.error(err)
+        return;
+      }
+      console.table(rows)
+    })
+  };
+
+});
+  
+  inquirer
+.prompt([
+  {
+    type: 'input',
+    message: 'Enter the name of the department',
+    name: 'Add a department',
+  },
+  {
+    type: 'input',
+    message: 'Enter the name, salary, and department for the role',
+    name: 'Add a role',
+  },
+  {
+    type: 'list',
+    message: 'Select an employee to update',
+    name: 'Update an employee role',
+    choices: ['employee 1', 'employee 2'],
+  },
+  {
+    type: 'input',
+    message: 'Update employee new role',
+    name: 'Update an employee role',
+  },
+]).then((answers) => {
+  console.log (answers.ENTERED) 
+  if (answers.ENTERED == 'Add a department') {
+    addDepartment()
+  } else if (answers.ENTERED == 'Add a role') {
+    addRole()
+  } else if (answers.ENTERED == 'Add an employee') {
+    addEmployee()
+  }
+  function addDepartment(){
+    console.log('department added')
+    Connection.query('INSERT INTO Add a department'),
+  
+    db.query(sql, (err, rows) => {
+      if (err) {
+        console.error(err)
+        return;
+      }
+      console.table(rows)
+    })
+  };
+  
+  function addRole(){
+    console.log('role added')
+    Connection.query('INSERT INTO Add a role'),
+  
+    db.query(sql, (err, rows) => {
+      if (err) {
+        console.error(err)
+        return;
+      }
+      console.table(rows)
+    })
+  };
+
+});
