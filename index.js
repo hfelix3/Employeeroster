@@ -98,7 +98,19 @@ function addDepartment() {
   },
 ]).then((answers) => {
 console.log(answers);
-console.log('department added');
+
+db.query(
+  'INSERT INTO department (name) VALUES (?)',
+  [answers.name],
+  (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('Department added');
+    }
+  }
+);
+
 });
 };
 
@@ -123,10 +135,21 @@ function addRole() {
     },
   ]).then((answers) => {
     console.log(answers);
-    console.log('role added')
+
+    db.query(
+      'INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)',
+      [answers.title, answers.salary, answers.department_id],
+      (err, results) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log('Role added');
+        }
+      }
+    );
+
   });
 };
-
 
 function addEmployee() {
   console.log('started addEmployee function')
@@ -166,6 +189,7 @@ inquirer
       }
     }
   );
+
 });
 };
 
@@ -187,6 +211,18 @@ function updateEmployeeRole() {
     },
   ]).then((answers) => {
     console.log(answers);
-    console.log('employee role updated')
+
+    db.query(
+      'INSERT INTO employees (role_id) VALUES (?)',
+      [answers.role],
+      (err, results) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log('Role updated');
+        }
+      }
+    );
+
   });
 };
