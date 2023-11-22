@@ -127,6 +127,7 @@ function addRole() {
   });
 };
 
+
 function addEmployee() {
   console.log('started addEmployee function')
 inquirer
@@ -154,7 +155,7 @@ inquirer
 ]).then((answers) => {
   console.log(answers);
 
-  connection.query(
+  db.query(
     'INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)',
     [answers.firstName, answers.lastName, answers.role, answers.manager],
     (err, results) => {
@@ -167,6 +168,7 @@ inquirer
   );
 });
 };
+
 
 function updateEmployeeRole() {
   console.log('started updateEmployeeRole function')
