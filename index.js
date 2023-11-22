@@ -108,7 +108,17 @@ function addRole(){
   .prompt([
     {
       type: 'input',
-      message: 'Enter the name, salary, and department for the role',
+      message: 'Enter the name for the role',
+      name: 'Add a role',
+    },
+    {
+      type: 'input',
+      message: 'Enter the salary for the role',
+      name: 'Add a role',
+    },
+    {
+      type: 'input',
+      message: 'Enter the department for the role',
       name: 'Add a role',
     },
   ]).then((answers) => {
