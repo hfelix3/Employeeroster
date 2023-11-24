@@ -76,7 +76,7 @@ function getAllRoles() {
 
 function getAllEmployees() {
   console.log ('employees loaded')
-  const sql = `SELECT * FROM employees`;
+  const sql = `SELECT employees.id, employees.first_name, employees.last_name, roles.id, roles.title, employees.manager_id, manager.first_name, manager.last_name`;
 
   db.query(sql, (err, rows) => {
     if (err) {
