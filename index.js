@@ -140,6 +140,12 @@ start();
 
 function addRole() {
   console.log('started addRole function')
+  db.query('SELECT * FROM department', (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+    const assignDepartment = results.map((department) => `${department.name}`);
+
   inquirer
   .prompt([
     {
@@ -153,9 +159,10 @@ function addRole() {
       name: 'salary',
     },
     {
-      type: 'input',
-      message: 'Enter the department for the role',
-      name: 'department_id',
+      type: 'list',
+      message: 'assign role to department',
+      name: 'department',
+      choices: assignDepartment,
     },
   ]).then((answers) => {
     console.log(answers);
@@ -171,12 +178,22 @@ function addRole() {
         }
       }
     );
+    
     start();
-  });
+  })};
+})
 };
+
 
 function addEmployee() {
   console.log('started addEmployee function')
+  db.query('SELECT * FROM roles', 'SELECT manager FROM employees', (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+    const assignRole = results.map((roles) => `${roles.title}`);
+    const assignManager = results.map((manager) => `${manager.first_name} ${manager.last_name}`);
+
 inquirer
 .prompt([
   {
@@ -190,14 +207,16 @@ inquirer
     name: 'lastName',
   },
   {
-    type: 'input',
-    message: "Enter the employee's role",
+    type: 'list',
+    message: "Assign the employee's role",
     name: 'role',
+    choices:  assignRole,
   },
   {
-    type: 'input',
-    message: "Enter the employee's manager",
+    type: 'list',
+    message: "Assign the employee's manager",
     name: 'manager',
+    choices:  assignManager,
   },
 ]).then((answers) => {
   console.log(answers);
@@ -215,6 +234,7 @@ inquirer
   );
   start();
 });
+    }})
 };
 
 
