@@ -9,6 +9,9 @@ const db = mysql.createConnection(
   database: 'roster_db'
 });
 
+start();
+
+function start() {
 inquirer
   .prompt([
       //TODO: create the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
@@ -47,6 +50,7 @@ inquirer
     updateEmployeeRole();
   }
 });
+}
 
 function getAllDepartments() {
   console.log ('departments loaded')
@@ -58,6 +62,7 @@ function getAllDepartments() {
       return;
     }
     console.table(rows)
+    start();
   })
 };
 
@@ -71,6 +76,7 @@ function getAllRoles() {
       return;
     }
     console.table(rows)
+    start();
   })
 };
 
@@ -95,6 +101,7 @@ function getAllEmployees() {
       return;
     }
     console.table(rows)
+    start();
   })
 };
 
@@ -121,7 +128,7 @@ db.query(
     }
   }
 );
-
+start();
 });
 };
 
@@ -158,7 +165,7 @@ function addRole() {
         }
       }
     );
-
+    start();
   });
 };
 
@@ -200,7 +207,7 @@ inquirer
       }
     }
   );
-
+  start();
 });
 };
 
@@ -245,6 +252,6 @@ function updateEmployeeRole() {
 
   });
   }
-    
+  start();
   });
 };
