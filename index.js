@@ -76,7 +76,18 @@ function getAllRoles() {
 
 function getAllEmployees() {
   console.log ('employees loaded')
-  const sql = `SELECT employees.id, employees.first_name, employees.last_name, roles.id, roles.title, employees.manager_id, manager.first_name, manager.last_name`;
+  const sql = `SELECT 
+    employees.id, 
+    employees.first_name, 
+    employees.last_name, 
+    roles.title, 
+    roles.salary, 
+    CONCAT(managers.first_name, ' ', managers.last_name) AS manager 
+  FROM employees 
+  LEFT JOIN roles 
+    ON employees.role_id = roles.id 
+  LEFT JOIN employees managers
+    ON employees.manager_id = managers.id`;
 
   db.query(sql, (err, rows) => {
     if (err) {
