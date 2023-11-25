@@ -68,7 +68,14 @@ function getAllDepartments() {
 
 function getAllRoles() {
   console.log ('roles loaded')
-  const sql = `SELECT * FROM roles`;
+  const sql = `SELECT 
+  roles.id, 
+  roles.title,
+  department.name AS department, 
+  roles.salary
+FROM roles
+INNER JOIN department 
+ON roles.department_id = department.id`;
 
   db.query(sql, (err, rows) => {
     if (err) {
@@ -87,13 +94,12 @@ function getAllEmployees() {
     employees.first_name, 
     employees.last_name, 
     roles.title, 
+    department.name AS department, 
     roles.salary, 
-    CONCAT(managers.first_name, ' ', managers.last_name) AS manager 
-  FROM employees 
-  LEFT JOIN roles 
-    ON employees.role_id = roles.id 
-  LEFT JOIN employees managers
-    ON employees.manager_id = managers.id`;
+  CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employees 
+  LEFT JOIN roles on employees.role_id = roles.id 
+  LEFT JOIN department on roles.department_id = department.id 
+  LEFT JOIN employees manager on manager.id = employees.manager_id;`;
 
   db.query(sql, (err, rows) => {
     if (err) {
