@@ -187,12 +187,17 @@ function addRole() {
 
 function addEmployee() {
   console.log('started addEmployee function')
-  db.query('SELECT * FROM roles', 'SELECT manager FROM employees', (err, results) => {
+  db.query('SELECT * FROM employees', (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const assignManager = results.map((manager) => `${manager.first_name} ${manager.last_name}`);
+   
+  db.query('SELECT * FROM roles', (err, results) => {
     if (err) {
       console.error(err);
     } else {
     const assignRole = results.map((roles) => `${roles.title}`);
-    const assignManager = results.map((manager) => `${manager.first_name} ${manager.last_name}`);
 
 inquirer
 .prompt([
@@ -235,6 +240,8 @@ inquirer
   start();
 });
     }})
+  }
+})
 };
 
 
