@@ -35,4 +35,4 @@ Challenge assignment testing will be demonstrated in video format.
 # Links
 
 Github Repository: https://github.com/hfelix3/Employeeroster/tree/main
-Google Drive link: 
+Google Drive link: https://drive.google.com/file/d/1UgjtdCi5Tc4soXR1g3gOsLmLJchMskrA/view

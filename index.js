@@ -191,7 +191,7 @@ function addEmployee() {
     if (err) {
       console.error(err);
     } else {
-      const assignManager = results.map((employees) => {return { value: employees.manager_id, name: employees.first_name}});
+      const assignManager = results.map((employees) => {return { value: employees.manager_id, name: `${employees.first_name} ${employees.last_name}`}});
    
   db.query('SELECT * FROM roles', (err, results) => {
     if (err) {
@@ -247,11 +247,17 @@ inquirer
 function updateEmployeeRole() {
   console.log('started updateEmployeeRole function')
 
+  db.query('SELECT * FROM roles', (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+    const assignRole = results.map((roles) => {return { value: roles.id, name: roles.title}});
+
   db.query('SELECT first_name, last_name FROM employees', (err, results) => {
     if (err) {
       console.error(err);
     } else {
-      const employeeNames = results.map((employee) => `${employee.first_name} ${employee.last_name}`);
+      const employeeNames = results.map((employees) => {return { value: employees.name, name: `${employees.first_name} ${employees.last_name}`}});
 
 
   inquirer
@@ -263,9 +269,10 @@ function updateEmployeeRole() {
       choices: employeeNames,
     },
     {
-      type: 'input',
-      message: 'Update employee new role',
+      type: 'list',
+      message: 'Assign employee new role',
       name: 'role_id',
+      choices:  assignRole,
     },
   ]).then((answers) => {
     console.log(answers);
@@ -283,7 +290,8 @@ function updateEmployeeRole() {
     );
 
   });
+}});
   }
-  start();
-  });
+});
+start();
 };
